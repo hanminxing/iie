@@ -5,7 +5,7 @@ Spyder Editor
 This is a temporary script file.
 """
 import tkinter as tk
-from tkinter import ttk, scrolledtext, Menu
+from tkinter import ttk, scrolledtext
 
 win = tk.Tk()
 
@@ -26,6 +26,10 @@ ttk.Label(mainFrame, text="Date n money :").grid(column=0, row=len(projectReqmen
 scr = scrolledtext.ScrolledText(mainFrame,width=30, height=10, wrap=tk.WORD)
 scr.grid(column=0,columnspan=2, padx=4,pady=3)
 
+results = ttk.Label(mainFrame, text="123")
+results.grid(column=2,padx=4,pady=3)
+
+
 Reqment = {}
 dates_rents_l = []
 def submit():
@@ -34,15 +38,22 @@ def submit():
         Reqment[projectReqments[req]] = itemMoney[req].get()
     dates_rents = scr.get(1.0, tk.END).split("\n")
     for date_rent in dates_rents:
-        if date_rent != None:
+        if len(date_rent) != 0:
             dates_rents_l.append(date_rent.split("\t"))
+    
+    results.configure(text=dates_rents_l)
+    
     print(Reqment, dates_rents_l)
+    
 
+ 
 
-
-
-  
+#存在变量不清零的问题
 submit = ttk.Button(mainFrame, text="submit", command=submit).grid(column=0, sticky='SWE')
+
+
+
+
 
 
 win.mainloop()   
