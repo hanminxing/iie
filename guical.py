@@ -11,9 +11,9 @@ from tkinter import messagebox as mBox
 import datetime
 import calendar
 import numpy as np
-import xlrd
 import pandas as pd
-import re
+
+import time
 
 #calculator core
 pd.set_option('colheader_justify', 'right')
@@ -43,7 +43,7 @@ def gen_date_list(start_date, end_date):
 #calculator GUI
 win = tk.Tk()
 
-win.title("IRR calculator")
+win.title("IRR calculator v1.0 beta")
 win.resizable(0,0)
 mainFrame = ttk.LabelFrame(win, text="@author: Hanminxing")
 mainFrame.grid(column=0, row=0,columnspan=4,rowspan=7, padx=8, pady=6)
@@ -72,6 +72,7 @@ dates_rents_l = []
 
 #submit button
 def submit():
+    a=time.time()
     global dates_rents_l, Reqment
     Reqment = {}
     dates_rents_l = []
@@ -115,13 +116,15 @@ def submit():
                         df.租金[j] = float(dates_rents_l[i][1].replace(",","")) - float(df.保证金[0])
                         
     payment = df.租金.values.tolist()   
-    print(payment)         
+    #print(payment)         
     irr = round(np.irr(payment)*12,4)*100
-    print("IRR = %.2f" % irr)
+    #print("IRR = %.2f" % irr)
     
     irr_res.insert(0,irr)
     #irr_res.configure(state='readonly')
-    print(start_date, end_date,dates_rents_l)
+    #print(start_date, end_date,dates_rents_l)
+    b=time.time()
+    print("Taking " + str(b-a) +" seconds")
 
 
 
@@ -142,9 +145,8 @@ submit = ttk.Button(mainFrame, text="submit", command=submit).grid(column=0,row=
 
 
 
-
 def _msgBox():
-    mBox.showinfo('帮助', '例:\n项目金额：100000000\n保证金:2000000\n管理费：1000000\n起租日：2018-08-08\n日期和租金：（直接从报价表中粘贴还款日和租金项即可）\n点击“提交”')   
+    mBox.showinfo('帮助', '例:\n项目金额：100000000\n保证金:2000000\n管理费：1000000\n起租日：2018/08/08\n日期和租金：（直接从报价表中粘贴还款日和租金项即可）\n点击“提交”')   
 
 menuBar = Menu(win)
 win.config(menu=menuBar)
