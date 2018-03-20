@@ -47,7 +47,7 @@ win.resizable(0,0)
 mainFrame = ttk.LabelFrame(win, text="@author: Hanminxing")
 mainFrame.grid(column=0, row=0,columnspan=4,rowspan=7, padx=8, pady=6)
  
-projectReqments = ["Total Money","Guarentee Fee","Service Fee","StartDate"]
+projectReqments = ["Capital","Financial Margin","Service Charge","Commencement Date"]
 itemMoney = ['a','b','c','d']
 
 for req in range(len(projectReqments)):
@@ -55,7 +55,7 @@ for req in range(len(projectReqments)):
     itemMoney[req] = tk.StringVar()
     ttk.Entry(mainFrame, width=20, textvariable=itemMoney[req]).grid(column=1, row=req, padx=4,pady=3, sticky=tk.W)
 
-ttk.Label(mainFrame, text="Date n money :").grid(column=2,row=0,padx=4,pady=3,sticky=tk.W)
+ttk.Label(mainFrame, text="Pay Day and Payment :").grid(column=2,row=0,padx=4,pady=3,sticky=tk.W)
 scr = scrolledtext.ScrolledText(mainFrame,width=30, height=5, wrap=tk.WORD)
 scr.grid(column=2,row=1,columnspan=2,rowspan=3, padx=4,pady=3)
 

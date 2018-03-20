@@ -31,12 +31,11 @@ while True:
     
     irr = np.irr(container)*12*100
     
-    print(irr)
+    print(irr,d)
     if 9.49 < irr < 9.52:
         if 28< c <35:
             toc = time.time()
             print(d,c,irr,(sum(d)+Guanlifei)/TotalMoney/5, "Time"+str(toc-tic))
             break
-        
-
+   
     
