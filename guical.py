@@ -5,15 +5,14 @@ Spyder Editor
 This is a temporary script file.
 """
 import tkinter as tk
-from tkinter import ttk, scrolledtext,Menu
+from tkinter import ttk,scrolledtext,Menu
 from tkinter import messagebox as mBox
 
 import datetime
-import calendar
+from calendar import monthrange
 import numpy as np
 import pandas as pd
 
-import time
 
 #calculator core
 pd.set_option('colheader_justify', 'right')
@@ -34,7 +33,7 @@ def gen_date_list(start_date, end_date):
         month = start_date.month - 1 + i
         year = start_date.year + month // 12
         month = month % 12 + 1
-        day = min(start_date.day,calendar.monthrange(year,month)[1])
+        day = min(start_date.day,monthrange(year,month)[1])
         date_list.append(datetime.date(year,month,day))
     return date_list
 
@@ -72,7 +71,7 @@ dates_rents_l = []
 
 #submit button
 def submit():
-    a=time.time()
+
     global dates_rents_l, Reqment
     Reqment = {}
     dates_rents_l = []
@@ -105,11 +104,11 @@ def submit():
     
     #填写对应日期的租金
     for i in range(len(dates_rents_l)):
-            date = datetime.datetime.strptime(dates_rents_l[i][0],'%Y/%m/%d')
+            dates = datetime.datetime.strptime(dates_rents_l[i][0],'%Y/%m/%d')
             #print(date.date(), dates_rents_l[i][1])
             for j in range(len(df.index)):
                 #print(df.日期[j], date.date())
-                if df.日期[j] == date.date():
+                if df.日期[j] == dates.date():
                     df.租金[j] = float(dates_rents_l[i][1].replace(",",""))
                     #print(dates_rents_l[i][1])
                     if j == len(df.index)-1:
@@ -123,8 +122,6 @@ def submit():
     irr_res.insert(0,irr)
     #irr_res.configure(state='readonly')
     #print(start_date, end_date,dates_rents_l)
-    b=time.time()
-    print("Taking " + str(b-a) +" seconds")
 
 
 

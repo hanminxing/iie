@@ -5,7 +5,7 @@ Created on Mon Mar 12 15:40:08 2018
 @author: Han Minxing
 """
 import numpy as np
-
+import time
 payment = []
 
 TotalMoney = 100000000
@@ -14,6 +14,7 @@ Guanlifei = TotalMoney * 0.05
 Cishu = 10
 
 while True:
+    tic = time.time()
     a = np.random.randint(TotalMoney*0.08,TotalMoney*0.17,Cishu)
    
     xjl = -TotalMoney + Baozhengjin +Guanlifei
@@ -33,7 +34,8 @@ while True:
     print(irr)
     if 9.49 < irr < 9.52:
         if 28< c <35:
-            print(d,c,irr,(sum(d)+Guanlifei)/TotalMoney/5)
+            toc = time.time()
+            print(d,c,irr,(sum(d)+Guanlifei)/TotalMoney/5, "Time"+str(toc-tic))
             break
         
 
