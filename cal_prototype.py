@@ -46,7 +46,7 @@ class Quotation():
             ary = [round(x,2)]*self.times
             irr_ary = [-self.total+self.bzj+self.glf] + ary
             irr_ary[-1] = irr_ary[-1] -self.bzj
-            etd_irr = round(np.irr(irr_ary),4)
+            etd_irr = round(np.irr(irr_ary)*self.mode,4)
             blank_frame['Payment']=ary
             x_var.append(i)
             y_var.append(etd_irr)
@@ -93,9 +93,9 @@ class Quotation():
 
         
         
-a=Quotation(78000000,5,4,0.1133000)
+a=Quotation(50000000,5,4,0.1105000)
 before = time.time()
-a.generate(0.044,0.064)
+a.generate(0.04,0.05)
 after = time.time()
 print('用时 '+ str(round(after-before,4))+' s')
 print()

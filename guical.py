@@ -85,7 +85,7 @@ def submit():
         if len(date_rent) != 0:
             dates_rents_l.append(date_rent.split("\t"))
     
-    start_date = datetime.datetime.strptime(Reqment['StartDate'], "%Y/%m/%d")
+    start_date = datetime.datetime.strptime(Reqment['Commencement Date'], "%Y/%m/%d")
     end_date = datetime.datetime.strptime(dates_rents_l[-1][0],"%Y/%m/%d")
     
     col = ["项目金额","保证金", "管理费", "日期", "租金"]
@@ -94,9 +94,9 @@ def submit():
     blank_data = np.zeros((n,5))
     df = pd.DataFrame(blank_data, columns=col)
 
-    df.项目金额[0] = float(Reqment['Total Money'].replace(",",""))
-    df.保证金[0] = float(Reqment['Guarentee Fee'].replace(",",""))
-    df.管理费[0] = float(Reqment['Service Fee'].replace(",",""))
+    df.项目金额[0] = float(Reqment['Capital'].replace(",",""))
+    df.保证金[0] = float(Reqment['Financial Margin'].replace(",",""))
+    df.管理费[0] = float(Reqment['Service Charge'].replace(",",""))
     #第一期现金流
     df.租金[0] = -df.项目金额[0] + df.保证金[0] + df.管理费[0]
     
